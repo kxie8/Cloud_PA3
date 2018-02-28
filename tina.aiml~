@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<aiml version="1.0.1">
+ <category>
+	<pattern>HELLO</pattern>
+	 <template>
+ 	 <random>
+	  <li>Hi, human !</li>
+	  <li>Hello UVA student !</li>
+ 	 </random>
+ 	 </template>
+ </category>
+
+ <category>
+  <pattern>WHAT TIME IS IT</pattern>
+  <template>The local time is: <system>date</system></template>
+ </category>
+
+ <category>
+   <pattern>WHO IS AVAILABLE *</pattern>
+   <template> <system>python who_free.py <star index = "1"/></system> is/are available.</template>
+ </category>
+
+ <category>
+   <pattern>WHEN IS *</pattern>
+   <template>Available from <system>python available.py <star index = "1"/></system> </template>
+ </category>
+
+ <category>
+   <pattern>HOW MANY SLOTS ARE OPEN AFTER NOON ON *</pattern>
+   <template> <system>python count.py <star index = "1"/></system> slots are available.</template>
+ </category>
+</aiml>

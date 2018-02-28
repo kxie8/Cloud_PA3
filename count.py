@@ -1,0 +1,31 @@
+
+
+import sys
+import datetime
+import pymysql
+
+date = sys.argv[1]
+date_converted = datetime.datetime.strptime(date, '%Y-%m-%d')
+check = date_converted.weekday()
+
+
+if (check<5):
+    conn = pymysql.connect(host='medicalcenter.martyhumphrey.info', port=3306, user='aardvark9', passwd='sparky12', db='Medical')
+
+    cur = conn.cursor()
+
+    statement = "SELECT COUNT(n.ID) FROM nurses n JOIN nurse_sched ns ON n.ID = ns.NurseID Where SlotDate = '"+ date +"' AND SlotStart > '12:00:00'"
+
+    cur.execute(statement)
+
+
+    for row in cur:
+        print((row[0]))
+
+
+    cur.close()
+    conn.close()
+else: 
+    print("The clinic is closed at that time.")
+
+
